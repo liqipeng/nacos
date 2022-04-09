@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Cluster_Nacos-8868" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="nacos-console" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.alibaba.nacos.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.alibaba.nacos.Nacos" />
+    <option name="VM_PARAMETERS" value="-Dserver.port=8868 -Dnacos.server.ip=127.0.0.1 -Dnacos.standalone=false -Dnacos.core.auth.enabled=true -DembeddedStorage=true -Dnacos.core.member.lookup.type=file -Dnacos.member.list=127.0.0.1:8848,127.0.0.1:8858,127.0.0.1:8868 -Duser.home=./.idea/nacos-user-home-8868 -Dnacos.home=./.idea/nacos-user-home-8868/nacos -Dnacos.naming.use-new-raft.first=true -Dlogging.level.org.apache.tomcat.util.scan.StandardJarScanner=ERROR" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
