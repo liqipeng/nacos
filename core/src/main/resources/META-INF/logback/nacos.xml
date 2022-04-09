@@ -139,31 +139,37 @@
     <root>
         <level value="INFO"/>
         <appender-ref ref="rootFile"/>
+        <appender-ref ref="CONSOLE"/>
     </root>
 
     <logger name="com.alibaba.nacos.core.auth" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="core-auth"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
 
     <logger name="com.alibaba.nacos.core.protocol.raft" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="protocol-raft"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
 
     <logger name="com.alipay.sofa.jraft" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="alipay-jraft"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
 
     <logger name="com.alibaba.nacos.core.protocol.distro" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="protocol-distro"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
 
     <logger name="com.alibaba.nacos.core.cluster" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="nacos-cluster"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
 
     <springProfile name="standalone">
