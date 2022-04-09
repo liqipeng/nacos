@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Standalone_AddressServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="nacos-address" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.alibaba.nacos.address.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.alibaba.nacos.address.AddressServer" />
+    <option name="VM_PARAMETERS" value="-Dnacos.server.ip=127.0.0.1 -Dnacos.standalone=true -Dnacos.core.auth.enabled=false -Dnacos.functionMode=address -Dlogging.level.root=DEBUG -Duser.home=./.idea/v2/nacos-user-home-standalone-address -Dnacos.home=./.idea/v2/nacos-user-home-standalone-address/nacos" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
