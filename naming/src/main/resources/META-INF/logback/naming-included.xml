@@ -223,42 +223,52 @@
     <logger name="com.alibaba.nacos.naming.main" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-server"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.raft" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="naming-raft"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.distro" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-distro"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.event" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-event"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.push" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-push"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.rt" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-rt"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.performance" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-performance"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.router" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-router"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.cache" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-cache"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.naming.debug" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="naming-debug"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
 
 </included>

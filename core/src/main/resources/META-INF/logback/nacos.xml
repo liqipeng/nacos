@@ -248,57 +248,68 @@
     <logger name="com.alibaba.nacos.core.auth" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="core-auth"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <logger name="com.alibaba.nacos.core.remote" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="remote-core"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <logger name="com.alibaba.nacos.core.remote.push" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="remote-push"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <!-- TPS Control-->
     <logger name="com.alibaba.nacos.core.remote.control.digest" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="tps-control-digest"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     <logger name="com.alibaba.nacos.core.remote.control.detail" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="tps-control-detail"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <logger name="com.alibaba.nacos.core.remote.control" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="tps-control"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     
     <logger name="com.alibaba.nacos.core.remote.digest" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="remote-digest"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <logger name="com.alibaba.nacos.core.protocol.raft" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="protocol-raft"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <logger name="com.alipay.sofa.jraft" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="alipay-jraft"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <logger name="com.alibaba.nacos.core.protocol.distro" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="protocol-distro"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <logger name="com.alibaba.nacos.core.cluster" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="nacos-cluster"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
     
     <springProfile name="standalone">
