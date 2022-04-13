@@ -70,6 +70,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @org.springframework.stereotype.Service("distroConsistencyService")
 public class DistroConsistencyServiceImpl implements EphemeralConsistencyService, DistroDataProcessor {
     
+    private static final String ON_RECEIVE_CHECKSUMS_PROCESSING_TAG = "1";
+    
     private final DistroMapper distroMapper;
     
     private final DataStore dataStore;
@@ -167,14 +169,12 @@ public class DistroConsistencyServiceImpl implements EphemeralConsistencyService
      * @param server      source server request checksum
      */
     public void onReceiveChecksums(Map<String, String> checksumMap, String server) {
-        
-        if (syncChecksumTasks.containsKey(server)) {
+    
+        if (syncChecksumTasks.putIfAbsent(server, ON_RECEIVE_CHECKSUMS_PROCESSING_TAG) != null) {
             // Already in process of this server:
             Loggers.DISTRO.warn("sync checksum task already in process with {}", server);
             return;
         }
-        
-        syncChecksumTasks.put(server, "1");
         
         try {
             
