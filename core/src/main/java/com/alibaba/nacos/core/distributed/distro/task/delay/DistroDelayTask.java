@@ -62,11 +62,13 @@ public class DistroDelayTask extends AbstractDelayTask {
         if (!(task instanceof DistroDelayTask)) {
             return;
         }
-        DistroDelayTask newTask = (DistroDelayTask) task;
-        if (!action.equals(newTask.getAction()) && createTime < newTask.getCreateTime()) {
-            action = newTask.getAction();
-            createTime = newTask.getCreateTime();
+        DistroDelayTask existTask = (DistroDelayTask) task;
+        // The `createTime` of current task is earlier than existed task means current task is expired,
+        // so merge `existTask` to current task.
+        if (!action.equals(existTask.getAction()) && createTime < existTask.getCreateTime()) {
+            action = existTask.getAction();
+            createTime = existTask.getCreateTime();
         }
-        setLastProcessTime(newTask.getLastProcessTime());
+        setLastProcessTime(existTask.getLastProcessTime());
     }
 }
