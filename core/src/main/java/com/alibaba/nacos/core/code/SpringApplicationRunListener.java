@@ -37,6 +37,8 @@ import java.util.List;
  */
 public class SpringApplicationRunListener implements org.springframework.boot.SpringApplicationRunListener, Ordered {
     
+    private static final String SPRING_ALLOW_CIRCULAR_REFERENCES = "spring.main.allow-circular-references";
+    
     private final SpringApplication application;
     
     private final String[] args;
@@ -44,6 +46,8 @@ public class SpringApplicationRunListener implements org.springframework.boot.Sp
     private List<NacosApplicationListener> nacosApplicationListeners = new ArrayList<>();
     
     {
+        System.setProperty(SPRING_ALLOW_CIRCULAR_REFERENCES, Boolean.TRUE.toString());
+        
         nacosApplicationListeners.add(new LoggingApplicationListener());
         nacosApplicationListeners.add(new StartingApplicationListener());
     }
