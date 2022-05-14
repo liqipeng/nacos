@@ -304,7 +304,7 @@ public class DistributedDatabaseOperateImpl extends RequestProcessor4CP implemen
             if (response.getSuccess()) {
                 return serializer.deserialize(response.getData().toByteArray(), List.class);
             }
-            throw new NJdbcException(response.getErrMsg());
+            throw new NJdbcException(String.format("Sql:%s, mapper:%s, err:%s", sql, mapper.getClass().getCanonicalName(), response.getErrMsg()));
         } catch (Exception e) {
             LogUtil.FATAL_LOG.error("An exception occurred during the query operation : {}", e.toString());
             throw new NacosRuntimeException(NacosException.SERVER_ERROR, e.toString());
