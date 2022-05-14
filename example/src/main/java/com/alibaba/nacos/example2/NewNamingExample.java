@@ -94,7 +94,7 @@ public class NewNamingExample {
         Instance instance = new Instance();
         instance.setIp(instanceIp);
         instance.setPort(instancePort);
-        Map<String, String> meta = new HashMap<>();
+        Map<String, String> meta = new HashMap<>(3);
         meta.put(HEART_BEAT_TIMEOUT, "102410241024");
         meta.put(IP_DELETE_TIMEOUT, "102410241024");
         meta.put(HEART_BEAT_INTERVAL, "102410241024");
