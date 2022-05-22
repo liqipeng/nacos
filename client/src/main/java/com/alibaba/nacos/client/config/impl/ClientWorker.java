@@ -386,8 +386,8 @@ public class ClientWorker implements Closeable {
                 return parseUpdateDataIdResponse(result.getData());
             } else {
                 setHealthServer(false);
-                LOGGER.error("[{}] [check-update] get changed dataId error, code: {}", agent.getName(),
-                        result.getCode());
+                LOGGER.error("[{}] [check-update] get changed dataId error, code: {}, msg: {}", agent.getName(),
+                        result.getCode(), result.getMessage());
             }
         } catch (Exception e) {
             setHealthServer(false);
