@@ -188,7 +188,7 @@ public class MemberUtil {
             }
             EnvUtil.writeClusterConf(builder.toString());
         } catch (Throwable ex) {
-            Loggers.CLUSTER.error("cluster member node persistence failed : {}", ExceptionUtil.getAllExceptionMsg(ex));
+            Loggers.CLUSTER.error("cluster member node persistence failed", ex);
         }
     }
     

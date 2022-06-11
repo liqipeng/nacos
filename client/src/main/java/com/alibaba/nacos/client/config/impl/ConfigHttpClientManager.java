@@ -79,8 +79,7 @@ public class ConfigHttpClientManager implements Closeable {
         try {
             HttpClientBeanHolder.shutdownNacostSyncRest(HTTP_CLIENT_FACTORY.getClass().getName());
         } catch (Exception ex) {
-            NAMING_LOGGER.error("[ConfigHttpClientManager] An exception occurred when the HTTP client was closed : {}",
-                    ExceptionUtil.getStackTrace(ex));
+            NAMING_LOGGER.error("[ConfigHttpClientManager] An exception occurred when the HTTP client was closed", ex);
         }
         NAMING_LOGGER.warn("[ConfigHttpClientManager] Destruction of the end");
     }

@@ -170,16 +170,14 @@ public class CredentialWatcher {
             try {
                 properties.load(propertiesIS);
             } catch (IOException e) {
-                SPAS_LOGGER.error("[26] Unable to load credential file, appName:" + appName
-                        + "Unable to load credential file " + propertyPath, e);
+                SPAS_LOGGER.error("[26] Unable to load credential file, appName:{} Unable to load credential file {}", appName, propertyPath, e);
                 propertyPath = null;
                 return;
             } finally {
                 try {
                     propertiesIS.close();
                 } catch (IOException e) {
-                    SPAS_LOGGER.error("[27] Unable to close credential file, appName:" + appName
-                            + "Unable to close credential file " + propertyPath, e);
+                    SPAS_LOGGER.error("[27] Unable to close credential file, appName:{} Unable to close credential file {}", appName, propertyPath, e);
                 }
             }
             

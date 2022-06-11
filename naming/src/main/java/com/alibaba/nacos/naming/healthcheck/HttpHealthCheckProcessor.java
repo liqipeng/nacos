@@ -82,7 +82,7 @@ public class HttpHealthCheckProcessor implements HealthCheckProcessor {
                 
                 if (ip.isMarked()) {
                     if (SRV_LOG.isDebugEnabled()) {
-                        SRV_LOG.debug("http check, ip is marked as to skip health check, ip: {}" + ip.getIp());
+                        SRV_LOG.debug("http check, ip is marked as to skip health check, ip: {}", ip.getIp());
                     }
                     continue;
                 }

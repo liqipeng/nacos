@@ -83,7 +83,7 @@ public class MysqlHealthCheckProcessor implements HealthCheckProcessorV2 {
         if (null == instance) {
             return;
         }
-        SRV_LOG.debug("mysql check, ip:" + instance);
+        SRV_LOG.debug("mysql check, ip:{}", instance);
         try {
             // TODO handle marked(white list) logic like v1.x.
             if (!instance.tryStartCheck()) {

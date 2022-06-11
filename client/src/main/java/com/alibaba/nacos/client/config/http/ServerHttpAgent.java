@@ -87,7 +87,7 @@ public class ServerHttpAgent implements HttpAgent {
                 LOGGER.error("[NACOS SocketTimeoutException httpGet] currentServerAddr:{}， err : {}",
                         serverListMgr.getCurrentServerAddr(), socketTimeoutException.getMessage());
             } catch (Exception ex) {
-                LOGGER.error("[NACOS Exception httpGet] currentServerAddr: " + serverListMgr.getCurrentServerAddr(),
+                LOGGER.error("[NACOS Exception httpGet] currentServerAddr: {}", serverListMgr.getCurrentServerAddr(),
                         ex);
                 throw ex;
             }
@@ -142,7 +142,7 @@ public class ServerHttpAgent implements HttpAgent {
                 LOGGER.error("[NACOS SocketTimeoutException httpPost] currentServerAddr: {}， err : {}",
                         currentServerAddr, socketTimeoutException.getMessage());
             } catch (Exception ex) {
-                LOGGER.error("[NACOS Exception httpPost] currentServerAddr: " + currentServerAddr, ex);
+                LOGGER.error("[NACOS Exception httpPost] currentServerAddr: {}", currentServerAddr, ex);
                 throw ex;
             }
             
@@ -190,13 +190,13 @@ public class ServerHttpAgent implements HttpAgent {
                     return result;
                 }
             } catch (ConnectException connectException) {
-                LOGGER.error("[NACOS ConnectException httpDelete] currentServerAddr:{}, err : {}",
-                        serverListMgr.getCurrentServerAddr(), ExceptionUtil.getStackTrace(connectException));
+                LOGGER.error("[NACOS ConnectException httpDelete] currentServerAddr:{}",
+                        serverListMgr.getCurrentServerAddr(), connectException);
             } catch (SocketTimeoutException stoe) {
-                LOGGER.error("[NACOS SocketTimeoutException httpDelete] currentServerAddr:{}， err : {}",
-                        serverListMgr.getCurrentServerAddr(), ExceptionUtil.getStackTrace(stoe));
+                LOGGER.error("[NACOS SocketTimeoutException httpDelete] currentServerAddr:{}",
+                        serverListMgr.getCurrentServerAddr(), stoe);
             } catch (Exception ex) {
-                LOGGER.error("[NACOS Exception httpDelete] currentServerAddr: " + serverListMgr.getCurrentServerAddr(),
+                LOGGER.error("[NACOS Exception httpDelete] currentServerAddr: {}", serverListMgr.getCurrentServerAddr(),
                         ex);
                 throw ex;
             }

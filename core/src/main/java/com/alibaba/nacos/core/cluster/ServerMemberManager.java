@@ -352,7 +352,9 @@ public class ServerMemberManager implements ApplicationListener<WebServerInitial
         } else {
             isInIpList = false;
             members.add(this.self);
-            Loggers.CLUSTER.warn("[serverlist] self ip {} not in serverlist {}", self, members);
+            if (Loggers.CLUSTER.isWarnEnabled()) {
+                Loggers.CLUSTER.warn("[serverlist] self ip {} not in serverlist {}", self, members);
+            }
         }
         
         // If the number of old and new clusters is different, the cluster information
@@ -578,7 +580,7 @@ public class ServerMemberManager implements ApplicationListener<WebServerInitial
                             @Override
                             public void onError(Throwable throwable) {
                                 Loggers.CLUSTER.error("failed to report new info to target node : {}, error : {}",
-                                        target.getAddress(), ExceptionUtil.getAllExceptionMsg(throwable));
+                                        target.getAddress(), throwable.getMessage(), throwable);
                                 MemberUtil.onFail(ServerMemberManager.this, target, throwable);
                             }
                             
@@ -589,7 +591,7 @@ public class ServerMemberManager implements ApplicationListener<WebServerInitial
                         });
             } catch (Throwable ex) {
                 Loggers.CLUSTER.error("failed to report new info to target node : {}, error : {}", target.getAddress(),
-                        ExceptionUtil.getAllExceptionMsg(ex));
+                        ex.getMessage(), ex);
             }
         }
         

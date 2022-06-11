@@ -58,14 +58,16 @@ public class GrpcRequestAcceptor extends RequestGrpc.RequestImplBase {
         String clientIp = grpcRequest.getMetadata().getClientIp();
         String connectionId = CONTEXT_KEY_CONN_ID.get();
         try {
-            if (connectionManager.traced(clientIp)) {
+            if (Loggers.REMOTE_DIGEST.isInfoEnabled() && connectionManager.traced(clientIp)) {
                 Loggers.REMOTE_DIGEST.info("[{}]Payload {},meta={},body={}", connectionId, receive ? "receive" : "send",
                         grpcRequest.getMetadata().toByteString().toStringUtf8(),
                         grpcRequest.getBody().toByteString().toStringUtf8());
             }
         } catch (Throwable throwable) {
-            Loggers.REMOTE_DIGEST.error("[{}]Monitor request error,payload={},error={}", connectionId, clientIp,
-                    grpcRequest.toByteString().toStringUtf8());
+            if (Loggers.REMOTE_DIGEST.isErrorEnabled()) {
+                Loggers.REMOTE_DIGEST.error("[{}]Monitor request error,payload={},error={}", connectionId, clientIp,
+                        grpcRequest.toByteString().toStringUtf8());
+            }
         }
         
     }
@@ -99,7 +101,7 @@ public class GrpcRequestAcceptor extends RequestGrpc.RequestImplBase {
         RequestHandler requestHandler = requestHandlerRegistry.getByRequestType(type);
         //no handler found.
         if (requestHandler == null) {
-            Loggers.REMOTE_DIGEST.warn(String.format("[%s] No handler for request type : %s :", "grpc", type));
+            Loggers.REMOTE_DIGEST.warn("[grpc] No handler for request type : {}", type);
             Payload payloadResponse = GrpcUtils
                     .convert(ErrorResponse.build(NacosException.NO_HANDLER, "RequestHandler Not Found"));
             traceIfNecessary(payloadResponse, false);
@@ -113,7 +115,7 @@ public class GrpcRequestAcceptor extends RequestGrpc.RequestImplBase {
         boolean requestValid = connectionManager.checkValid(connectionId);
         if (!requestValid) {
             Loggers.REMOTE_DIGEST
-                    .warn("[{}] Invalid connection Id ,connection [{}] is un registered ,", "grpc", connectionId);
+                    .warn("[grpc] Invalid connection Id ,connection [{}] is un registered ,", connectionId);
             Payload payloadResponse = GrpcUtils
                     .convert(ErrorResponse.build(NacosException.UN_REGISTER, "Connection is unregistered."));
             traceIfNecessary(payloadResponse, false);
@@ -127,7 +129,7 @@ public class GrpcRequestAcceptor extends RequestGrpc.RequestImplBase {
             parseObj = GrpcUtils.parse(grpcRequest);
         } catch (Exception e) {
             Loggers.REMOTE_DIGEST
-                    .warn("[{}] Invalid request receive from connection [{}] ,error={}", "grpc", connectionId, e);
+                    .warn("[grpc] Invalid request receive from connection [{}] ,error={}", connectionId, e);
             Payload payloadResponse = GrpcUtils.convert(ErrorResponse.build(NacosException.BAD_GATEWAY, e.getMessage()));
             traceIfNecessary(payloadResponse, false);
             responseObserver.onNext(payloadResponse);

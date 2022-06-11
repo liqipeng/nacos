@@ -146,7 +146,7 @@ public class AddressServerMemberLookupTest extends TestCase {
         addressServerUrl = HTTP_PREFIX + domainName + ":" + addressPort + addressUrl;
         envIdUrl = HTTP_PREFIX + domainName + ":" + addressPort + "/env";
         
-        Loggers.CORE.info("ServerListService address-server port:" + addressPort);
-        Loggers.CORE.info("ADDRESS_SERVER_URL:" + addressServerUrl);
+        Loggers.CORE.info("ServerListService address-server port:{}", addressPort);
+        Loggers.CORE.info("ADDRESS_SERVER_URL:{}", addressServerUrl);
     }
 }

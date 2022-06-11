@@ -141,7 +141,7 @@ public class ServerListManager implements ServerListFactory, Closeable {
     private void refreshServerListIfNeed() {
         try {
             if (!CollectionUtils.isEmpty(serverList)) {
-                NAMING_LOGGER.debug("server list provided by user: " + serverList);
+                NAMING_LOGGER.debug("server list provided by user: {}", serverList);
                 return;
             }
             if (System.currentTimeMillis() - lastServerListRefreshTime < refreshServerListInternal) {

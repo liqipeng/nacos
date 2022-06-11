@@ -76,7 +76,7 @@ public class LocalConfigInfoProcessor {
         try {
             return readFile(localPath);
         } catch (IOException ioe) {
-            LOGGER.error("[" + serverName + "] get failover error, " + localPath, ioe);
+            LOGGER.error("[{}] get failover error, {}", serverName, localPath, ioe);
             return null;
         }
     }
@@ -96,7 +96,7 @@ public class LocalConfigInfoProcessor {
         try {
             return readFile(file);
         } catch (IOException ioe) {
-            LOGGER.error("[" + name + "]+get snapshot error, " + file, ioe);
+            LOGGER.error("[{}] get snapshot error, {}", name, file, ioe);
             return null;
         }
     }
@@ -133,7 +133,7 @@ public class LocalConfigInfoProcessor {
             try {
                 IoUtils.delete(file);
             } catch (IOException ioe) {
-                LOGGER.error("[" + envName + "] delete snapshot error, " + file, ioe);
+                LOGGER.error("[{}] delete snapshot error, {}", envName, file, ioe);
             }
         } else {
             try {
@@ -151,7 +151,7 @@ public class LocalConfigInfoProcessor {
                     IoUtils.writeStringToFile(file, config, Constants.ENCODE);
                 }
             } catch (IOException ioe) {
-                LOGGER.error("[" + envName + "] save snapshot error, " + file, ioe);
+                LOGGER.error("[{}] save snapshot error, {}", envName, file, ioe);
             }
         }
     }
@@ -172,7 +172,7 @@ public class LocalConfigInfoProcessor {
                 }
             }
         } catch (IOException ioe) {
-            LOGGER.error("clean all snapshot error, " + ioe.toString(), ioe);
+            LOGGER.error("clean all snapshot error", ioe);
         }
     }
     

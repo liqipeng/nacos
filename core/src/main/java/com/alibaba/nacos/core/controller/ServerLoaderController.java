@@ -135,8 +135,9 @@ public class ServerLoaderController {
     public ResponseEntity<String> smartReload(HttpServletRequest request,
             @RequestParam(value = "loaderFactor", required = false) String loaderFactorStr,
             @RequestParam(value = "force", required = false) String force) {
-        
-        LOGGER.info("Smart reload request receive,requestIp={}", getRemoteIp(request));
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Smart reload request receive,requestIp={}", getRemoteIp(request));
+        }
         
         Map<String, Object> serverLoadMetrics = getServerLoadMetrics();
         Object avgString = serverLoadMetrics.get("avg");
@@ -185,8 +186,10 @@ public class ServerLoaderController {
             serverLoaderInfoRequest.setReloadServer(lowLimitServer.get(i).address);
             Member member = serverMemberManager.find(overLimitServer.get(i).address);
             
-            LOGGER.info("Reload task submit ,fromServer ={},toServer={}, ", overLimitServer.get(i).address,
-                    lowLimitServer.get(i).address);
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Reload task submit ,fromServer ={},toServer={}, ", overLimitServer.get(i).address,
+                        lowLimitServer.get(i).address);
+            }
             
             if (serverMemberManager.getSelf().equals(member)) {
                 try {

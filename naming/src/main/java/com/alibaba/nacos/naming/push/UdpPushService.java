@@ -140,9 +140,9 @@ public class UdpPushService implements ApplicationContextAware, ApplicationListe
                 long lastRefTime = System.nanoTime();
                 for (PushClient client : clients.values()) {
                     if (client.zombie()) {
-                        Loggers.PUSH.debug("client is zombie: " + client);
+                        Loggers.PUSH.debug("client is zombie: {}", client);
                         clients.remove(client.toString());
-                        Loggers.PUSH.debug("client is zombie: " + client);
+                        Loggers.PUSH.debug("client is zombie: {}", client);
                         continue;
                     }
                     
@@ -156,7 +156,9 @@ public class UdpPushService implements ApplicationContextAware, ApplicationListe
                         compressData = (byte[]) (pair.getValue0());
                         data = (Map<String, Object>) pair.getValue1();
                         
-                        Loggers.PUSH.debug("[PUSH-CACHE] cache hit: {}:{}", serviceName, client.getAddrStr());
+                        if (Loggers.PUSH.isDebugEnabled()) {
+                            Loggers.PUSH.debug("[PUSH-CACHE] cache hit: {}:{}", serviceName, client.getAddrStr());
+                        }
                     }
                     
                     if (compressData != null) {

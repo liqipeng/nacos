@@ -92,7 +92,7 @@ public class ParamUtil {
             connectTimeout = Integer.parseInt(tmp);
         } catch (NumberFormatException e) {
             final String msg = "[http-client] invalid connect timeout:" + tmp;
-            LOGGER.error("[settings] " + msg, e);
+            LOGGER.error("[settings] {}", msg, e);
             throw new IllegalArgumentException(msg, e);
         }
         LOGGER.info("[settings] [http-client] connect timeout:{}", connectTimeout);

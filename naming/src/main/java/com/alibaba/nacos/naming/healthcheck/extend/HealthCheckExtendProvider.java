@@ -92,7 +92,7 @@ public class HealthCheckExtendProvider implements BeanFactoryAware {
         }
         if (processorType.size() > origin.size()) {
             processorType.removeAll(origin);
-            LOGGER.debug("init health plugin : types=" + processorType);
+            LOGGER.debug("init health plugin : types={}", processorType);
         }
     }
     

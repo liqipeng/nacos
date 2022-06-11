@@ -59,7 +59,9 @@ public abstract class AbstractDistroExecuteTask extends AbstractExecuteTask {
             Loggers.DISTRO.warn("No found transport agent for type [{}]", type);
             return;
         }
-        Loggers.DISTRO.info("[DISTRO-START] {}", toString());
+        if (Loggers.DISTRO.isInfoEnabled()) {
+            Loggers.DISTRO.info("[DISTRO-START] {}", toString());
+        }
         if (transportAgent.supportCallbackTransport()) {
             doExecuteWithCallback(new DistroExecuteCallback());
         } else {
@@ -73,7 +75,9 @@ public abstract class AbstractDistroExecuteTask extends AbstractExecuteTask {
             if (!result) {
                 handleFailedTask();
             }
-            Loggers.DISTRO.info("[DISTRO-END] {} result: {}", toString(), result);
+            if (Loggers.DISTRO.isInfoEnabled()) {
+                Loggers.DISTRO.info("[DISTRO-END] {} result: {}", toString(), result);
+            }
         } catch (Exception e) {
             Loggers.DISTRO.warn("[DISTRO] Sync data change failed.", e);
             handleFailedTask();
@@ -120,7 +124,9 @@ public abstract class AbstractDistroExecuteTask extends AbstractExecuteTask {
         public void onSuccess() {
             DistroRecord distroRecord = DistroRecordsHolder.getInstance().getRecord(getDistroKey().getResourceType());
             distroRecord.syncSuccess();
-            Loggers.DISTRO.info("[DISTRO-END] {} result: true", getDistroKey().toString());
+            if (Loggers.DISTRO.isInfoEnabled()) {
+                Loggers.DISTRO.info("[DISTRO-END] {} result: true", getDistroKey().toString());
+            }
         }
         
         @Override
@@ -128,7 +134,9 @@ public abstract class AbstractDistroExecuteTask extends AbstractExecuteTask {
             DistroRecord distroRecord = DistroRecordsHolder.getInstance().getRecord(getDistroKey().getResourceType());
             distroRecord.syncFail();
             if (null == throwable) {
-                Loggers.DISTRO.info("[DISTRO-END] {} result: false", getDistroKey().toString());
+                if (Loggers.DISTRO.isInfoEnabled()) {
+                    Loggers.DISTRO.info("[DISTRO-END] {} result: false", getDistroKey().toString());
+                }
             } else {
                 Loggers.DISTRO.warn("[DISTRO] Sync data change failed.", throwable);
             }

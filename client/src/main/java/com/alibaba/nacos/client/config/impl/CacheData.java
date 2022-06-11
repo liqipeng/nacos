@@ -325,8 +325,10 @@ public class CacheData {
                 }
                 
                 listenerWrap.lastCallMd5 = md5;
-                LOGGER.info("[{}] [notify-ok] dataId={}, group={}, md5={}, listener={} ,cost={} millis.", name, dataId,
-                        group, md5, listener, (System.currentTimeMillis() - start));
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("[{}] [notify-ok] dataId={}, group={}, md5={}, listener={} ,cost={} millis.", name, dataId,
+                            group, md5, listener, (System.currentTimeMillis() - start));
+                }
             } catch (NacosException ex) {
                 LOGGER.error("[{}] [notify-error] dataId={}, group={}, md5={}, listener={} errCode={} errMsg={}", name,
                         dataId, group, md5, listener, ex.getErrCode(), ex.getErrMsg());
@@ -362,9 +364,11 @@ public class CacheData {
             LOGGER.error("[{}] [notify-error] dataId={}, group={}, md5={}, listener={} throwable={}", name, dataId,
                     group, md5, listener, t.getCause());
         }
-        final long finishNotify = System.currentTimeMillis();
-        LOGGER.info("[{}] [notify-listener] time cost={}ms in ClientWorker, dataId={}, group={}, md5={}, listener={} ",
-                name, (finishNotify - startNotify), dataId, group, md5, listener);
+        if (LOGGER.isInfoEnabled()) {
+            final long finishNotify = System.currentTimeMillis();
+            LOGGER.info("[{}] [notify-listener] time cost={}ms in ClientWorker, dataId={}, group={}, md5={}, listener={} ",
+                    name, (finishNotify - startNotify), dataId, group, md5, listener);
+        }
     }
     
     public static String getMd5String(String config) {

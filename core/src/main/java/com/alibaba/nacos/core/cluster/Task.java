@@ -37,7 +37,7 @@ public abstract class Task implements Runnable {
         try {
             executeBody();
         } catch (Throwable t) {
-            Loggers.CORE.error("this task execute has error : {}", ExceptionUtil.getStackTrace(t));
+            Loggers.CORE.error("this task execute has error : {}", t.getMessage(), t);
         } finally {
             if (!shutdown) {
                 after();

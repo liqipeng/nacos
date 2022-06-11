@@ -98,7 +98,9 @@ public class PushReceiver implements Runnable, Closeable {
                 udpSocket.receive(packet);
                 
                 String json = new String(IoUtils.tryDecompress(packet.getData()), UTF_8).trim();
-                NAMING_LOGGER.info("received push data: " + json + " from " + packet.getAddress().toString());
+                if (NAMING_LOGGER.isInfoEnabled()) {
+                    NAMING_LOGGER.info("received push data: {} from {}", json, packet.getAddress().toString());
+                }
                 
                 PushPacket pushPacket = JacksonUtils.toObj(json, PushPacket.class);
                 String ack;

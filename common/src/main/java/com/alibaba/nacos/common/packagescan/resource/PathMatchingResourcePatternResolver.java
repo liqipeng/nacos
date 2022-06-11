@@ -374,15 +374,13 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
                         }
                     } catch (MalformedURLException ex) {
                         if (LOGGER.isDebugEnabled()) {
-                            LOGGER.debug("Cannot search for matching files underneath [" + url
-                                    + "] because it cannot be converted to a valid 'jar:' URL: " + ex.getMessage());
+                            LOGGER.debug("Cannot search for matching files underneath [{}] because it cannot be converted to a valid 'jar:' URL", url, ex);
                         }
                     }
                 }
             } catch (Exception ex) {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Cannot introspect jar files since ClassLoader [" + classLoader
-                            + "] does not support 'getURLs()': " + ex);
+                    LOGGER.debug("Cannot introspect jar files since ClassLoader [{}] does not support 'getURLs()'", classLoader, ex);
                 }
             }
         }
@@ -398,8 +396,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
                 addAllClassLoaderJarRoots(classLoader.getParent(), result);
             } catch (Exception ex) {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Cannot introspect jar files in parent ClassLoader since [" + classLoader
-                            + "] does not support 'getParent()': " + ex);
+                    LOGGER.debug("Cannot introspect jar files in parent ClassLoader since [{}] does not support 'getParent()'", classLoader, ex);
                 }
             }
         }
@@ -435,14 +432,13 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
                     }
                 } catch (MalformedURLException ex) {
                     if (LOGGER.isDebugEnabled()) {
-                        LOGGER.debug("Cannot search for matching files underneath [" + path
-                                + "] because it cannot be converted to a valid 'jar:' URL: " + ex.getMessage());
+                        LOGGER.debug("Cannot search for matching files underneath [{}] because it cannot be converted to a valid 'jar:' URL", path, ex);
                     }
                 }
             }
         } catch (Exception ex) {
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Failed to evaluate 'java.class.path' manifest entries: " + ex);
+                LOGGER.debug("Failed to evaluate 'java.class.path' manifest entries", ex);
             }
         }
     }
@@ -625,7 +621,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
                 closeJarFile = true;
             } catch (ZipException ex) {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Skipping invalid jar classpath entry [" + urlFile + "]");
+                    LOGGER.debug("Skipping invalid jar classpath entry [{}]", urlFile);
                 }
                 return Collections.emptySet();
             }
@@ -694,13 +690,12 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
             rootDir = rootDirResource.getFile().getAbsoluteFile();
         } catch (FileNotFoundException ex) {
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Cannot search for matching files underneath " + rootDirResource
-                        + " in the file system: " + ex.getMessage());
+                LOGGER.debug("Cannot search for matching files underneath {} in the file system", rootDirResource, ex);
             }
             return Collections.emptySet();
         } catch (Exception ex) {
             if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Failed to resolve " + rootDirResource + " in the file system: " + ex);
+                LOGGER.info("Failed to resolve {} in the file system", rootDirResource, ex);
             }
             return Collections.emptySet();
         }
@@ -744,14 +739,14 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
         if (!rootDir.exists()) {
             // Silently skip non-existing directories.
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Skipping [" + rootDir.getAbsolutePath() + "] because it does not exist");
+                LOGGER.debug("Skipping [{}] because it does not exist", rootDir.getAbsolutePath());
             }
             return Collections.emptySet();
         }
         if (!rootDir.isDirectory()) {
             // Complain louder if it exists but is no directory.
             if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Skipping [" + rootDir.getAbsolutePath() + "] because it does not denote a directory");
+                LOGGER.info("Skipping [{}] because it does not denote a directory", rootDir.getAbsolutePath());
             }
             return Collections.emptySet();
         }
@@ -792,8 +787,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
             if (content.isDirectory() && getPathMatcher().matchStart(fullPattern, currPath + "/")) {
                 if (!content.canRead()) {
                     if (LOGGER.isDebugEnabled()) {
-                        LOGGER.debug("Skipping subdirectory [" + dir.getAbsolutePath()
-                                + "] because the application is not allowed to read the directory");
+                        LOGGER.debug("Skipping subdirectory [{}] because the application is not allowed to read the directory", dir.getAbsolutePath());
                     }
                 } else {
                     doRetrieveMatchingFiles(fullPattern, content, result);

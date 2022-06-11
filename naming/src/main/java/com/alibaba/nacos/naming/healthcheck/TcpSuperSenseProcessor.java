@@ -111,14 +111,14 @@ public class TcpSuperSenseProcessor implements HealthCheckProcessor, Runnable {
             
             if (ip.isMarked()) {
                 if (SRV_LOG.isDebugEnabled()) {
-                    SRV_LOG.debug("tcp check, ip is marked as to skip health check, ip:" + ip.getIp());
+                    SRV_LOG.debug("tcp check, ip is marked as to skip health check, ip:{}", ip.getIp());
                 }
                 continue;
             }
             
             if (!ip.markChecking()) {
-                SRV_LOG.warn("tcp check started before last one finished, service: " + task.getCluster().getService()
-                        .getName() + ":" + task.getCluster().getName() + ":" + ip.getIp() + ":" + ip.getPort());
+                SRV_LOG.warn("tcp check started before last one finished, service: {}:{}:{}:{}", task.getCluster().getService()
+                        .getName(), task.getCluster().getName(), ip.getIp(), ip.getPort());
                 
                 healthCheckCommon
                         .reEvaluateCheckRT(task.getCheckRtNormalized() * 2, task, switchDomain.getTcpHealthParams());

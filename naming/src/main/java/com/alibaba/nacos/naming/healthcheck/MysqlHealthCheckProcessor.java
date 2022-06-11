@@ -78,7 +78,7 @@ public class MysqlHealthCheckProcessor implements HealthCheckProcessor {
     public void process(HealthCheckTask task) {
         List<Instance> ips = task.getCluster().allIPs(false);
         
-        SRV_LOG.debug("mysql check, ips:" + ips);
+        SRV_LOG.debug("mysql check, ips:{}", ips);
         if (CollectionUtils.isEmpty(ips)) {
             return;
         }

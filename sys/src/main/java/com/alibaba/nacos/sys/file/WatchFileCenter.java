@@ -124,7 +124,7 @@ public class WatchFileCenter {
         }
         LOGGER.warn("[WatchFileCenter] start close");
         for (Map.Entry<String, WatchDirJob> entry : MANAGER.entrySet()) {
-            LOGGER.warn("[WatchFileCenter] start to shutdown this watcher which is watch : " + entry.getKey());
+            LOGGER.warn("[WatchFileCenter] start to shutdown this watcher which is watch : {}", entry.getKey());
             try {
                 entry.getValue().shutdown();
             } catch (Throwable e) {

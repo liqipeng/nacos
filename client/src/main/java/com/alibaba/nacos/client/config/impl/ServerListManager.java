@@ -375,7 +375,7 @@ public class ServerListManager implements Closeable {
             try {
                 updateIfChanged(getApacheServerList(url, name));
             } catch (Exception e) {
-                LOGGER.error("[" + name + "][update-serverlist] failed to update serverlist from address server!", e);
+                LOGGER.error("[{}][update-serverlist] failed to update serverlist from address server!", name, e);
             }
         }
     }
@@ -438,7 +438,7 @@ public class ServerListManager implements Closeable {
                 return null;
             }
         } catch (Exception e) {
-            LOGGER.error("[check-serverlist] exception. url: " + url, e);
+            LOGGER.error("[check-serverlist] exception. url: {}", url, e);
             return null;
         }
     }

@@ -46,7 +46,9 @@ public class DistroSyncChangeTask extends AbstractDistroExecuteTask {
         String type = getDistroKey().getResourceType();
         DistroData distroData = getDistroData(type);
         if (null == distroData) {
-            Loggers.DISTRO.warn("[DISTRO] {} with null data to sync, skip", toString());
+            if (Loggers.DISTRO.isWarnEnabled()) {
+                Loggers.DISTRO.warn("[DISTRO] {} with null data to sync, skip", toString());
+            }
             return true;
         }
         return getDistroComponentHolder().findTransportAgent(type)
@@ -58,7 +60,9 @@ public class DistroSyncChangeTask extends AbstractDistroExecuteTask {
         String type = getDistroKey().getResourceType();
         DistroData distroData = getDistroData(type);
         if (null == distroData) {
-            Loggers.DISTRO.warn("[DISTRO] {} with null data to sync, skip", toString());
+            if (Loggers.DISTRO.isWarnEnabled()) {
+                Loggers.DISTRO.warn("[DISTRO] {} with null data to sync, skip", toString());
+            }
             return;
         }
         getDistroComponentHolder().findTransportAgent(type)

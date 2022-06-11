@@ -80,11 +80,15 @@ public class ConcurrentDiskUtil {
                 } catch (Exception e) {
                     ++i;
                     if (i > RETRY_COUNT) {
-                        NAMING_LOGGER.error("[NA] read " + file.getName() + " fail;retryed time: " + i, e);
+                        if (NAMING_LOGGER.isErrorEnabled()) {
+                            NAMING_LOGGER.error("[NA] read {} fail;retryed time: {}", file.getName(), i, e);
+                        }
                         throw new IOException("read " + file.getAbsolutePath() + " conflict");
                     }
                     sleep(SLEEP_BASETIME * i);
-                    NAMING_LOGGER.warn("read " + file.getName() + " conflict;retry time: " + i);
+                    if (NAMING_LOGGER.isWarnEnabled()) {
+                        NAMING_LOGGER.warn("read {} conflict;retry time: {}", file.getName(), i);
+                    }
                 }
             } while (null == rlock);
             int fileSize = (int) fcin.size();

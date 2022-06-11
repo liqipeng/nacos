@@ -550,7 +550,7 @@ public class Service extends com.alibaba.nacos.api.naming.pojo.Service implement
         ipsString.append(serviceString);
         
         if (Loggers.SRV_LOG.isDebugEnabled()) {
-            Loggers.SRV_LOG.debug("service to json: " + serviceString);
+            Loggers.SRV_LOG.debug("service to json: {}", serviceString);
         }
         
         if (CollectionUtils.isNotEmpty(ips)) {

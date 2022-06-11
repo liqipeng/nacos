@@ -126,8 +126,10 @@ public class NacosXdsService extends AggregatedDiscoveryServiceGrpc.AggregatedDi
 
         WatchedStatus watchedStatus;
         if (discoveryRequest.getResponseNonce().isEmpty()) {
-            Loggers.MAIN.info("xds: init request, type {}, connection-id {}, version {}",
-                    type, connectionId, discoveryRequest.getVersionInfo());
+            if (Loggers.MAIN.isInfoEnabled()) {
+                Loggers.MAIN.info("xds: init request, type {}, connection-id {}, version {}",
+                        type, connectionId, discoveryRequest.getVersionInfo());
+            }
             watchedStatus = new WatchedStatus();
             watchedStatus.setType(discoveryRequest.getTypeUrl());
             connection.addWatchedResource(discoveryRequest.getTypeUrl(), watchedStatus);

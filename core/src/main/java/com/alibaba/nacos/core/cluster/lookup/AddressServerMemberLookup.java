@@ -127,8 +127,8 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
         addressServerUrl = HTTP_PREFIX + domainName + ":" + addressPort + addressUrl;
         envIdUrl = HTTP_PREFIX + domainName + ":" + addressPort + "/env";
         
-        Loggers.CORE.info("ServerListService address-server port:" + addressPort);
-        Loggers.CORE.info("ADDRESS_SERVER_URL:" + addressServerUrl);
+        Loggers.CORE.info("ServerListService address-server port:{}", addressPort);
+        Loggers.CORE.info("ADDRESS_SERVER_URL:{}", addressServerUrl);
     }
     
     @SuppressWarnings("PMD.UndefineMagicConstantRule")
@@ -145,7 +145,7 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
                 break;
             } catch (Throwable e) {
                 ex = e;
-                Loggers.CLUSTER.error("[serverlist] exception, error : {}", ExceptionUtil.getAllExceptionMsg(ex));
+                Loggers.CLUSTER.error("[serverlist] exception", ex);
             }
         }
         if (!success) {
@@ -179,8 +179,7 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
             try {
                 afterLookup(MemberUtil.readServerConf(EnvUtil.analyzeClusterConf(reader)));
             } catch (Throwable e) {
-                Loggers.CLUSTER.error("[serverlist] exception for analyzeClusterConf, error : {}",
-                        ExceptionUtil.getAllExceptionMsg(e));
+                Loggers.CLUSTER.error("[serverlist] exception for analyzeClusterConf", e);
             }
             addressServerFailCount = 0;
         } else {
@@ -206,7 +205,7 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
                 if (addressServerFailCount >= maxFailCount) {
                     isAddressServerHealth = false;
                 }
-                Loggers.CLUSTER.error("[serverlist] exception, error : {}", ExceptionUtil.getAllExceptionMsg(ex));
+                Loggers.CLUSTER.error("[serverlist] exception", ex);
             } finally {
                 GlobalExecutor.scheduleByCommon(this, DEFAULT_SYNC_TASK_DELAY_MS);
             }

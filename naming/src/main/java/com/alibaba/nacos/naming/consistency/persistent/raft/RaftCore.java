@@ -682,7 +682,7 @@ public class RaftCore implements Closeable {
                 try {
                     final String url = buildUrl(server, API_BEAT);
                     if (Loggers.RAFT.isDebugEnabled()) {
-                        Loggers.RAFT.debug("send beat to server " + server);
+                        Loggers.RAFT.debug("send beat to server {}", server);
                     }
                     HttpClient.asyncHttpPostLarge(url, null, compressedBytes, new Callback<String>() {
                         @Override

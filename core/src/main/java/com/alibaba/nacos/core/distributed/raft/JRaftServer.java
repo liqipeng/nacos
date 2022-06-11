@@ -306,7 +306,9 @@ public class JRaftServer {
             return future;
         } catch (Throwable e) {
             MetricsMonitor.raftReadFromLeader();
-            Loggers.RAFT.warn("Raft linear read failed, go to Leader read logic : {}", e.toString());
+            if (Loggers.RAFT.isWarnEnabled()) {
+                Loggers.RAFT.warn("Raft linear read failed, go to Leader read logic : {}", e.toString());
+            }
             // run raft read
             readFromLeader(request, future);
             return future;

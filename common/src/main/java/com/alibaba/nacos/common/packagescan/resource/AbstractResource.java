@@ -60,7 +60,7 @@ public abstract class AbstractResource implements Resource {
             } catch (IOException ex) {
                 Logger logger = LoggerFactory.getLogger(getClass());
                 if (logger.isDebugEnabled()) {
-                    logger.debug("Could not retrieve File for existence check of " + getDescription(), ex);
+                    logger.debug("Could not retrieve File for existence check of {}", getDescription(), ex);
                 }
             }
         }
@@ -71,7 +71,7 @@ public abstract class AbstractResource implements Resource {
         } catch (Throwable ex) {
             Logger logger = LoggerFactory.getLogger(getClass());
             if (logger.isDebugEnabled()) {
-                logger.debug("Could not retrieve InputStream for existence check of " + getDescription(), ex);
+                logger.debug("Could not retrieve InputStream for existence check of {}", getDescription(), ex);
             }
             return false;
         }
@@ -171,7 +171,7 @@ public abstract class AbstractResource implements Resource {
             } catch (IOException ex) {
                 Logger logger = LoggerFactory.getLogger(getClass());
                 if (logger.isDebugEnabled()) {
-                    logger.debug("Could not close content-length InputStream for " + getDescription(), ex);
+                    logger.debug("Could not close content-length InputStream for {}", getDescription(), ex);
                 }
             }
         }

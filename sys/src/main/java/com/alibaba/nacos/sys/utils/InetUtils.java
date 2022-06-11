@@ -146,7 +146,7 @@ public class InetUtils {
                     nics.hasMoreElements(); ) {
                 NetworkInterface ifc = nics.nextElement();
                 if (ifc.isUp()) {
-                    LOG.debug("Testing interface: " + ifc.getDisplayName());
+                    LOG.debug("Testing interface: {}", ifc.getDisplayName());
                     if (ifc.getIndex() < lowest || result == null) {
                         lowest = ifc.getIndex();
                     } else {
@@ -159,7 +159,7 @@ public class InetUtils {
                             boolean isLegalIpVersion = InternetAddressUtil.PREFER_IPV6_ADDRESSES ? address instanceof Inet6Address
                                     : address instanceof Inet4Address;
                             if (isLegalIpVersion && !address.isLoopbackAddress() && isPreferredAddress(address)) {
-                                LOG.debug("Found non-loopback interface: " + ifc.getDisplayName());
+                                LOG.debug("Found non-loopback interface: {}", ifc.getDisplayName());
                                 result = address;
                             }
                         }
@@ -187,7 +187,7 @@ public class InetUtils {
         if (useOnlySiteLocalInterface) {
             final boolean siteLocalAddress = address.isSiteLocalAddress();
             if (!siteLocalAddress) {
-                LOG.debug("Ignoring address: " + address.getHostAddress());
+                LOG.debug("Ignoring address: {}", address.getHostAddress());
             }
             return siteLocalAddress;
         }
@@ -207,7 +207,7 @@ public class InetUtils {
     private static boolean ignoreInterface(String interfaceName) {
         for (String regex : IGNORED_INTERFACES) {
             if (interfaceName.matches(regex)) {
-                LOG.debug("Ignoring interface: " + interfaceName);
+                LOG.debug("Ignoring interface: {}", interfaceName);
                 return true;
             }
         }

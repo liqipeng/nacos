@@ -59,14 +59,16 @@ public class GrpcBiStreamRequestAcceptor extends BiRequestStreamGrpc.BiRequestSt
         String clientIp = grpcRequest.getMetadata().getClientIp();
         String connectionId = CONTEXT_KEY_CONN_ID.get();
         try {
-            if (connectionManager.traced(clientIp)) {
+            if (Loggers.REMOTE_DIGEST.isInfoEnabled() && connectionManager.traced(clientIp)) {
                 Loggers.REMOTE_DIGEST.info("[{}]Bi stream request receive, meta={},body={}", connectionId,
                         grpcRequest.getMetadata().toByteString().toStringUtf8(),
                         grpcRequest.getBody().toByteString().toStringUtf8());
             }
         } catch (Throwable throwable) {
-            Loggers.REMOTE_DIGEST.error("[{}]Bi stream request error,payload={},error={}", connectionId,
-                    grpcRequest.toByteString().toStringUtf8(), throwable);
+            if (Loggers.REMOTE_DIGEST.isErrorEnabled()) {
+                Loggers.REMOTE_DIGEST.error("[{}]Bi stream request error,payload={},error={}", connectionId,
+                        grpcRequest.toByteString().toStringUtf8(), throwable);
+            }
         }
         
     }
@@ -102,9 +104,11 @@ public class GrpcBiStreamRequestAcceptor extends BiRequestStreamGrpc.BiRequestSt
                 }
                 
                 if (parseObj == null) {
-                    Loggers.REMOTE_DIGEST
-                            .warn("[{}]Grpc request bi stream,payload parse null ,body={},meta={}", connectionId,
-                                    payload.getBody().getValue().toStringUtf8(), payload.getMetadata());
+                    if (Loggers.REMOTE_DIGEST.isWarnEnabled()) {
+                        Loggers.REMOTE_DIGEST
+                                .warn("[{}]Grpc request bi stream,payload parse null ,body={},meta={}", connectionId,
+                                        payload.getBody().getValue().toStringUtf8(), payload.getMetadata());
+                    }
                     return;
                 }
                 if (parseObj instanceof ConnectionSetupRequest) {
