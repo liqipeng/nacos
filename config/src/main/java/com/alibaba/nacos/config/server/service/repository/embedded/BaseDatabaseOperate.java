@@ -60,10 +60,10 @@ public interface BaseDatabaseOperate extends DatabaseOperate {
         } catch (IncorrectResultSizeDataAccessException e) {
             return null;
         } catch (CannotGetJdbcConnectionException e) {
-            FATAL_LOG.error("[db-error] can't get connection : {}", ExceptionUtil.getAllExceptionMsg(e));
+            FATAL_LOG.error("[db-error] can't get connection : {}", e.getMessage(), e);
             throw e;
         } catch (DataAccessException e) {
-            FATAL_LOG.error("[db-error] DataAccessException : {}", ExceptionUtil.getAllExceptionMsg(e));
+            FATAL_LOG.error("[db-error] DataAccessException : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -87,8 +87,8 @@ public interface BaseDatabaseOperate extends DatabaseOperate {
             FATAL_LOG.error("[db-error] {}", e.toString());
             throw e;
         } catch (DataAccessException e) {
-            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error : {}", sql, args,
-                    ExceptionUtil.getAllExceptionMsg(e));
+            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error :", sql, args,
+                    e);
             throw e;
         }
     }
@@ -112,8 +112,8 @@ public interface BaseDatabaseOperate extends DatabaseOperate {
             FATAL_LOG.error("[db-error] {}", e.toString());
             throw e;
         } catch (DataAccessException e) {
-            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error : {}", sql, args,
-                    ExceptionUtil.getAllExceptionMsg(e));
+            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error :", sql, args,
+                    e);
             throw e;
         }
     }
@@ -135,8 +135,8 @@ public interface BaseDatabaseOperate extends DatabaseOperate {
             FATAL_LOG.error("[db-error] {}", e.toString());
             throw e;
         } catch (DataAccessException e) {
-            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error : {}", sql, args,
-                    ExceptionUtil.getAllExceptionMsg(e));
+            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error :", sql, args,
+                    e);
             throw e;
         }
     }
@@ -160,8 +160,8 @@ public interface BaseDatabaseOperate extends DatabaseOperate {
             FATAL_LOG.error("[db-error] {}", e.toString());
             throw e;
         } catch (DataAccessException e) {
-            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error : {}", sql, args,
-                    ExceptionUtil.getAllExceptionMsg(e));
+            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error :", sql, args,
+                    e);
             throw e;
         }
     }
@@ -181,8 +181,8 @@ public interface BaseDatabaseOperate extends DatabaseOperate {
             FATAL_LOG.error("[db-error] {}", e.toString());
             throw e;
         } catch (DataAccessException e) {
-            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error : {}", sql, args,
-                    ExceptionUtil.getAllExceptionMsg(e));
+            FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error : ", sql, args,
+                    e);
             throw e;
         }
     }
@@ -232,11 +232,11 @@ public interface BaseDatabaseOperate extends DatabaseOperate {
                 }
                 return Boolean.FALSE;
             } catch (CannotGetJdbcConnectionException e) {
-                FATAL_LOG.error("[db-error] sql : {}, args : {}, error : {}", errSql[0], args[0], e.toString());
+                FATAL_LOG.error("[db-error] sql : {}, args : {}, error :", errSql[0], args[0], e);
                 throw e;
             } catch (DataAccessException e) {
-                FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error : {}", errSql[0], args[0],
-                        ExceptionUtil.getAllExceptionMsg(e));
+                FATAL_LOG.error("[db-error] DataAccessException sql : {}, args : {}, error :", errSql[0], args[0],
+                        e);
                 throw e;
             }
         });

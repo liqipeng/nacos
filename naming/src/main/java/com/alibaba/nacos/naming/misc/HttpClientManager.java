@@ -105,8 +105,7 @@ public class HttpClientManager {
             HttpClientBeanHolder.shutdownNacosAsyncRest(ASYNC_HTTP_CLIENT_FACTORY.getClass().getName());
             HttpClientBeanHolder.shutdownNacosAsyncRest(PROCESSOR_ASYNC_HTTP_CLIENT_FACTORY.getClass().getName());
         } catch (Exception ex) {
-            SRV_LOG.error("[NamingServerHttpClientManager] An exception occurred when the HTTP client was closed : {}",
-                    ExceptionUtil.getStackTrace(ex));
+            SRV_LOG.error("[NamingServerHttpClientManager] An exception occurred when the HTTP client was closed", ex);
         }
         SRV_LOG.warn("[NamingServerHttpClientManager] Destruction of the end");
     }
